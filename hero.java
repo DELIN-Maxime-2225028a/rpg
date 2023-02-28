@@ -1,50 +1,76 @@
 package rpg;
 
-public class hero {
+public class Hero {
 	
+	private int xp;
 	private int hp;
-	private int baseAttack;
-	private int baseDefense;
-	private int baseSpeed;
+	private int attack;
+	private int defence;
+	private int speed;
 
-	public void Entity(int x, int y, int hp, int baseAttack, int baseDefense, int baseSpeed) {
-		super();
-		this.hp = hp;
-		this.baseAttack = baseAttack;
-		this.baseDefense = baseDefense;
-		this.baseSpeed = baseSpeed;
+	public Hero() {
+		xp = 0;
+		hp = 100;
+		attack = 10;
+		defence = 10;
+		speed = 10;
+	}
+	
+	
+	public int getXp() {
+		return xp;
 	}
 
-	public int getHP() {
+
+	public void setXp(int xp) {
+		this.xp = xp;
+	}
+
+
+	public int getHp() {
 		return hp;
 	}
 
-	public void setHP(int hp) {
+	
+	public void setHp(int hp) {
 		this.hp = hp;
 	}
 
-	public int getBaseAttack() {
-		return baseAttack;
+	
+	public int getAttack() {
+		return attack;
 	}
 
-	public void setBaseAttack(int baseAttack) {
-		this.baseAttack = baseAttack;
+	
+	public void setAttack(int attack) {
+		this.attack = attack;
 	}
 
-	public int getBaseDefense() {
-		return baseDefense;
+	
+	public int getDefence() {
+		return defence;
 	}
 
-	public void setBaseDefense(int baseDefense) {
-		this.baseDefense = baseDefense;
+	
+	public void setDefence(int defence) {
+		this.defence = defence;
 	}
 
-	public int getBaseSpeed() {
-		return baseSpeed;
+	
+	public int getSpeed() {
+		return speed;
 	}
 
-	public void setBaseSpeed(int baseSpeed) {
-		this.baseSpeed = baseSpeed;
+	
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
+
+
+	public String toString() {
+		return "Health : "+hp+"\nAttack : "+attack+"\nDefence : "+defence+"\nSpeed : "+speed+"\nExperience : "+xp;
+	}
+	
+	
 
 }
