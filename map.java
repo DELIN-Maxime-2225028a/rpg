@@ -17,6 +17,16 @@ public class Map {
 			}
 		}
 	}
+	
+	
+	public int getNbRow() {
+		return nbRow;
+	}
+
+
+	public void setNbRow(int nbRow) {
+		this.nbRow = nbRow;
+	}
 
 
 	public char getCell(int row, int col) {
@@ -49,6 +59,32 @@ public class Map {
 	}
 
 
+	public boolean checkBoss() {
+		boolean status = true;
+		for(int i=0;i<nbRow;++i) {
+			for(int j=0;j<nbCol;++j) {
+				if(map1[i][j]=='X')
+					status = true;
+				else
+					status = false;
+			}
+		}
+		return status;
+	}
+	
+	
+	public boolean endGame() {
+		boolean status = false;
+		/*if(checkBoss()==false)
+			status=true;*/
+		return status;
+	}
+
+
+	public static void clearScreen() {
+		for (int i = 0; i < 200; ++i) System.out.println(); 
+	}
+
 	public void moveUpward() {
 		char tmp;
 		for(int i=0;i<nbRow;++i) {
@@ -58,16 +94,19 @@ public class Map {
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i-1][j]=tmp;
+						break;
 					}
-					if(i+1>=0 && map1[i-1][j]=='x' || map1[i-1][j]=='X') { //if enemy x=enemy, X=boss
+					else if(i+1>=0 && map1[i-1][j]=='x' || map1[i-1][j]=='X') { //if enemy x=enemy, X=boss
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i-1][j]=tmp;
+						break;
 					}
-					if(i+1>=0 && map1[i-1][j]=='K') { //if item K=item
+					else if(i+1>=0 && map1[i-1][j]=='K') { //if item K=item
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i-1][j]=tmp;
+						break;
 					}
 				}
 			}
@@ -78,6 +117,7 @@ public class Map {
 
 	public void moveDownward() {
 		char tmp;
+		boolean breaked = false;
 		for(int i=0;i<nbRow;++i) {
 			for(int j=0;j<nbCol;++j) {
 				if(map1[i][j]=='O') {
@@ -85,18 +125,25 @@ public class Map {
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i+1][j]=tmp;
+						breaked = true;
+						break;
 					}
-					if(i+1<nbRow && map1[i+1][j]=='x' || map1[i+1][j]=='X') { //if enemy x=enemy, X=boss
+					else if(i+1<nbRow && map1[i+1][j]=='x' || map1[i+1][j]=='X') { //if enemy x=enemy, X=boss
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i+1][j]=tmp;
+						break;
 					}
-					if(i+1<nbRow&& map1[i+1][j]=='K') { //if item K=item
+					else if(i+1<nbRow && map1[i+1][j]=='K') { //if item K=item
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i+1][j]=tmp;
+						break;
 					}
 				}
+			}
+			if(breaked) {
+				break;
 			}
 		}
 	}
@@ -111,17 +158,20 @@ public class Map {
 					if(i-1>=0 && map1[i][j-1]=='.') { //if empty cell
 						tmp=map1[i][j];
 						map1[i][j]='.';
-						map1[i-1][j]=tmp;
+						map1[i][j-1]=tmp;
+						break;
 					}
-					if(i+1>=0 && map1[i][j-1]=='x' || map1[i][j-1]=='X') { //if enemy x=enemy, X=boss
+					else if(i+1>=0 && map1[i][j-1]=='x' || map1[i][j-1]=='X') { //if enemy x=enemy, X=boss
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i][j-1]=tmp;
+						break;
 					}
-					if(i+1>=0 && map1[i][j-1]=='K') { //if item K=item
+					else if(i+1>=0 && map1[i][j-1]=='K') { //if item K=item
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i][j-1]=tmp;
+						break;
 					}
 				}
 			}
@@ -134,20 +184,23 @@ public class Map {
 		for(int i=0;i<nbRow;++i) {
 			for(int j=0;j<nbCol;++j) {
 				if(map1[i][j]=='O') {
-					if(i-1>=0 && map1[i][j+1]=='.') { //if empty cell
+					if(j+1<nbRow && map1[i][j+1]=='.') { //if empty cell
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i][j+1]=tmp;
+						break;
 					}
-					if(i+1<nbRow && map1[i][j+1]=='x' || map1[i][j+1]=='X') { //if enemy x=enemy, X=boss
+					else if(j+1<nbRow && map1[i][j+1]=='x' || map1[i][j+1]=='X') { //if enemy x=enemy, X=boss
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i][j+1]=tmp;
+						break;
 					}
-					if(i+1<nbRow && map1[i][j+1]=='K') { //if item K=item
+					else if(j+1<nbRow && map1[i][j+1]=='K') { //if item K=item
 						tmp=map1[i][j];
 						map1[i][j]='.';
 						map1[i][j+1]=tmp;
+						break;
 					}
 				}
 			}
